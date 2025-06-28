@@ -59,7 +59,13 @@ const Withdraw = () => {
       setAvailableGems(newBalance);
 
       alert(
-        `Заявка на вывод ${amount} GEMS через ${method === "card" ? "карту" : "крипто"} успешно подана!`,
+        `Заявка на вывод ${amount} GEMS через ${
+          method === "card"
+            ? "карту"
+            : method === "yumoney"
+              ? "ЮMoney"
+              : "крипто"
+        } успешно подана!`,
       );
 
       // Сброс формы
@@ -107,7 +113,7 @@ const Withdraw = () => {
                 <Label className="text-cyan-400 mb-4 block">
                   Способ вывода
                 </Label>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <Button
                     variant={method === "card" ? "default" : "outline"}
                     onClick={() => setMethod("card")}
@@ -115,6 +121,14 @@ const Withdraw = () => {
                   >
                     <Icon name="CreditCard" className="mr-2" size={16} />
                     Карта
+                  </Button>
+                  <Button
+                    variant={method === "yumoney" ? "default" : "outline"}
+                    onClick={() => setMethod("yumoney")}
+                    className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10"
+                  >
+                    <Icon name="Wallet" className="mr-2" size={16} />
+                    ЮMoney
                   </Button>
                   <Button
                     variant={method === "crypto" ? "default" : "outline"}
@@ -129,6 +143,21 @@ const Withdraw = () => {
                   <p className="text-red-400 text-sm mt-1">{errors.method}</p>
                 )}
               </div>
+
+              {method === "yumoney" && (
+                <div>
+                  <Label className="text-cyan-400 mb-2 block">
+                    Номер кошелька ЮMoney
+                  </Label>
+                  <Input
+                    placeholder="Введите номер кошелька"
+                    className="bg-black/60 border-cyan-500/30 text-white"
+                  />
+                  <p className="text-gray-400 text-sm mt-1">
+                    Формат: 410012345678901 или номер телефона
+                  </p>
+                </div>
+              )}
 
               <Button
                 onClick={handleSubmit}
