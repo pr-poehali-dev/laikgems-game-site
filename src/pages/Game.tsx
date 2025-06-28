@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
@@ -7,6 +7,24 @@ import Header from "@/components/Header";
 const Game = () => {
   const [gems, setGems] = useState(0);
   const [clickPower, setClickPower] = useState(1);
+
+  // Загрузка сохранённых данных при монтировании
+  useEffect(() => {
+    const savedGems = localStorage.getItem("gameGems");
+    const savedClickPower = localStorage.getItem("gameClickPower");
+
+    if (savedGems) setGems(parseInt(savedGems));
+    if (savedClickPower) setClickPower(parseInt(savedClickPower));
+  }, []);
+
+  // Сохранение после каждого изменения
+  useEffect(() => {
+    localStorage.setItem("gameGems", gems.toString());
+  }, [gems]);
+
+  useEffect(() => {
+    localStorage.setItem("gameClickPower", clickPower.toString());
+  }, [clickPower]);
 
   const handleClick = () => {
     setGems((prev) => prev + clickPower);
