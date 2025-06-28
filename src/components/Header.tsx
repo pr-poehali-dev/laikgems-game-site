@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 
@@ -33,14 +34,14 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="flex items-center space-x-1 text-gray-300 hover:text-cyan-400 transition-colors duration-300"
               >
                 <Icon name={item.icon} size={16} />
                 <span className="text-sm">{item.name}</span>
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -60,15 +61,15 @@ const Header = () => {
           <nav className="md:hidden mt-4 py-4 border-t border-cyan-500/20">
             <div className="grid grid-cols-2 gap-2">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="flex items-center space-x-2 p-2 rounded-lg text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Icon name={item.icon} size={16} />
                   <span className="text-sm">{item.name}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </nav>

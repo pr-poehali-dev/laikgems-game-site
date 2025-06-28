@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const Hero = () => {
@@ -48,22 +49,26 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold px-8 py-3 text-lg glow-effect glow-hover"
-            >
-              <Icon name="Play" className="mr-2" size={20} />
-              Начать играть
-            </Button>
+            <Link to="/game">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold px-8 py-3 text-lg glow-effect glow-hover"
+              >
+                <Icon name="Play" className="mr-2" size={20} />
+                Начать играть
+              </Button>
+            </Link>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3 text-lg"
-            >
-              <Icon name="Info" className="mr-2" size={20} />
-              Узнать больше
-            </Button>
+            <Link to="/about">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 px-8 py-3 text-lg"
+              >
+                <Icon name="Info" className="mr-2" size={20} />
+                Узнать больше
+              </Button>
+            </Link>
           </div>
         </div>
 
